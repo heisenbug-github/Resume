@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20190914200744_InitialMigration.cs" />
+    <Compile Remove="Migrations\20190914200744_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20190914202929_InitialMigration.cs" />
+    <Compile Remove="Migrations\20190914202929_InitialMigration.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.2.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Resume.Entities\Resume.Entities.csproj" />
+    <ProjectReference Include="..\Resume.Utils\Resume.Utils.csproj" />
+  </ItemGroup>
+
+</Project>
