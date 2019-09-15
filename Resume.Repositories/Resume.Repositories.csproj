@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Resume.DbContext\Resume.DbContext.csproj" />
     <ProjectReference Include="..\Resume.Entities\Resume.Entities.csproj" />
     <ProjectReference Include="..\Resume.Utils\Resume.Utils.csproj" />
   </ItemGroup>
