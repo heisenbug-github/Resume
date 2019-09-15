@@ -26,11 +26,13 @@ namespace Resume.Services
         {
             message.IsRead = true;
             this.messageRepository.Update(message);
+            this.unitOfWork.SaveChanges();
         }
 
         public void SaveMessage(Message message)
         {
             this.messageRepository.Add(message);
+            this.unitOfWork.SaveChanges();
         }
     }
 }

@@ -1,0 +1,186 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hasan Kaplan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:site_name" content="" />
+    <meta property="og:description" content="" />
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:image" content="" />
+    <meta name="twitter:url" content="" />
+    <meta name="twitter:card" content="" />
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700" rel="stylesheet">
+
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="~/css/Resume/animate.css">
+    <!-- Icomoon Icon Fonts-->
+    <link rel="stylesheet" href="~/css/Resume/icomoon.css">
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" href="~/css/Resume/bootstrap.css">
+    <!-- Flexslider  -->
+    <link rel="stylesheet" href="~/css/Resume/flexslider.css">
+    <!-- Flaticons  -->
+    <link rel="stylesheet" href="fonts/Resume/flaticon/font/flaticon.css">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="css/Resume/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/Resume/owl.theme.default.min.css">
+    <!-- Theme style  -->
+    <link rel="stylesheet" href="css/Resume/style.css">
+
+    <!-- Modernizr JS -->
+    <script src="js/Resume/modernizr-2.6.2.min.js"></script>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body>
+    <div id="colorlib-page">
+        <div class="container-wrap">
+            <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
+            <aside id="colorlib-aside" role="complementary" class="border js-fullheight">
+                <div class="text-center">
+                    <div class="author-img" style="background-image: url(images/Resume/about.jpg);"></div>
+                    <h1 id="colorlib-logo"><a href="index.html">Hasan Kaplan</a></h1>
+                    <span class="position">Developer - Türkiye</span>
+                </div>
+                <nav id="colorlib-main-menu" role="navigation" class="navbar">
+                    <div id="navbar" class="collapse">
+                        <ul>
+                            <li class="active"><a href="#" data-nav-section="home">Giriş</a></li>
+                            <li><a href="#" data-nav-section="about">Hakkımda</a></li>
+                            <!--
+                                                    <li><a href="#" data-nav-section="services">Services</a></li>
+                            -->
+                            <li><a href="#" data-nav-section="skills">Beceriler</a></li>
+                            <li><a href="#" data-nav-section="education">Eğitim</a></li>
+                            <li><a href="#" data-nav-section="experience">Deneyim</a></li>
+                            <!--
+                                                    <li><a href="#" data-nav-section="work">Work</a></li>
+                            -->
+                            <!--
+                                                    <li><a href="#" data-nav-section="blog">Blog</a></li>
+                            -->
+                            <li><a href="#" data-nav-section="contact">İletişim</a></li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <div class="colorlib-footer">
+                    <p>
+                        <small>
+                            &copy; <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --> </span> @*<span>Demo Images: <a href="https://unsplash.com/" target="_blank">Unsplash.com</a></span>*@
+                        </small>
+                    </p>
+                    <ul>
+                        <li><a href="#"><i class="icon-facebook2"></i></a></li>
+                        <li><a href="#"><i class="icon-twitter2"></i></a></li>
+                        <li><a href="#"><i class="icon-instagram"></i></a></li>
+                        <li><a href="#"><i class="icon-linkedin2"></i></a></li>
+                    </ul>
+                </div>
+
+            </aside>
+
+            <div id="colorlib-main">
+                <partial name="_CookieConsentPartial" />
+                @RenderBody()
+            </div><!-- end:colorlib-main -->
+        </div><!-- end:container-wrap -->
+    </div><!-- end:colorlib-page -->
+    @*<header>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Resume.WebUi</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <div class="container">
+            <partial name="_CookieConsentPartial" />
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <footer class="border-top footer text-muted">
+            <div class="container">
+                &copy; 2019 - Resume.WebUi - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </footer>
+
+        <environment include="Development">
+            <script src="~/lib/jquery/dist/jquery.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        </environment>
+        <environment exclude="Development">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+                    asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                    asp-fallback-test="window.jQuery"
+                    crossorigin="anonymous"
+                    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=">
+            </script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
+                    asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"
+                    asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                    crossorigin="anonymous"
+                    integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o">
+            </script>
+        </environment>
+        <script src="~/js/site.js" asp-append-version="true"></script>*@
+
+    <!-- jQuery -->
+    <script src="~/js/Resume/jquery.min.js"></script>
+    <!-- jQuery Easing -->
+    <script src="js/Resume/jquery.easing.1.3.js"></script>
+    <!-- Bootstrap -->
+    <script src="js/Resume/bootstrap.min.js"></script>
+    <!-- Waypoints -->
+    <script src="js/Resume/jquery.waypoints.min.js"></script>
+    <!-- Flexslider -->
+    <script src="js/Resume/jquery.flexslider-min.js"></script>
+    <!-- Owl carousel -->
+    <script src="js/Resume/owl.carousel.min.js"></script>
+    <!-- Counters -->
+    <script src="js/Resume/jquery.countTo.js"></script>
+
+
+    <!-- MAIN JS -->
+    <script src="js/Resume/main.js"></script>
+
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

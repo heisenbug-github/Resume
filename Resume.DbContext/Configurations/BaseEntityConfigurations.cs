@@ -12,6 +12,7 @@ namespace Resume.DbContext.Configurations
         public virtual void Configure(EntityTypeBuilder<TEntity> builder)
         {
             builder.Property(x => x.ClusteredIndex).UseNpgsqlIdentityAlwaysColumn();
+            builder.ForNpgsqlHasIndex(x => x.ClusteredIndex).IsUnique();
         }
     }
 }

@@ -11,6 +11,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Resume.DbContext;
+using Resume.Repositories.UnitOfWork;
+using Resume.Services;
 
 namespace Resume.WebUi
 {
@@ -36,9 +38,8 @@ namespace Resume.WebUi
             services.AddDbContext<ResumeDbContext>(options =>
                  options.UseNpgsql(Configuration.GetConnectionString("ConnectionString")));
 
-            //services.AddEntityFrameworkNpgsql()
-            //   .AddDbContext<ResumeDbContext>()
-            //   .BuildServiceProvider();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<IContactService, ContactService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
