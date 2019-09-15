@@ -37,7 +37,8 @@ namespace Resume.WebUi.Controllers
         [HttpPost]
         public IActionResult SendMessage(Message message)
         {
-
+            this.contactService.SaveMessage(message);
+            return View("Index");
         }
     }
 }
