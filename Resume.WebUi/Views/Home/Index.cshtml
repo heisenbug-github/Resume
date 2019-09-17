@@ -6,7 +6,7 @@
 <section id="colorlib-hero" class="js-fullheight" data-section="home">
     <div class="flexslider js-fullheight">
         <ul class="slides">
-            <li style="background-image: url(images/Resume/img_bg_3.jpg);">
+            <li style="background-image: url(/images/Resume/img_bg_3.jpg);">
                 <div class="overlay"></div>
                 <div class="container-fluid">
                     <div class="row">
@@ -24,7 +24,7 @@
                     </div>
                 </div>
             </li>
-            <li style="background-image: url(images/Resume/img-5.jpg);">
+            <li style="background-image: url(/images/Resume/img-5.jpg);">
                 <div class="overlay"></div>
                 <div class="container-fluid">
                     <div class="row">
@@ -713,16 +713,16 @@
                     <div class="col-md-10 col-md-offset-1 col-md-pull-1 animate-box" data-animate-effect="fadeInRight">
                         <form asp-action="SendMessage">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="İsim">
+                                <input name="Name" type="text" class="form-control" placeholder="İsim">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Eposta">
+                                <input name="SenderEmail" type="text" class="form-control" placeholder="Eposta">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Konu">
+                                <input name="Subject" type="text" class="form-control" placeholder="Konu">
                             </div>
                             <div class="form-group">
-                                <textarea name="" id="message" cols="30" rows="7" class="form-control" placeholder="Mesaj"></textarea>
+                                <textarea name="Body" id="Body" cols="30" rows="7" class="form-control" placeholder="Mesaj"></textarea>
                             </div>
                             <div class="form-group">
                                 <input type="submit" class="btn btn-primary btn-send-message" value="Mesajı İlet">
