@@ -1,4 +1,5 @@
 ﻿using Resume.DbContext;
+using Resume.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,12 +21,12 @@ namespace Resume.Repositories.UnitOfWork
             //_dbContext.Configuration.ProxyCreationEnabled = false;
         }
 
-        private IMessageRepository messageRepository;
-        public IMessageRepository MessageRepository
+        private IBaseRepository<Message> messageRepository;
+        public IBaseRepository<Message> MessageRepository
         {
             get
             {
-                return this.messageRepository ?? (this.messageRepository = new MessageRepository(this.resumeDbContext));
+                return this.messageRepository ?? (this.messageRepository = new BaseRepository<Message>(this.resumeDbContext));
             }
         }
 

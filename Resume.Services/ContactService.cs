@@ -9,7 +9,7 @@ namespace Resume.Services
     public class ContactService : IContactService
     {
         private readonly IUnitOfWork unitOfWork;
-        private readonly IMessageRepository messageRepository;
+        private readonly IBaseRepository<Message> messageRepository;
 
         public ContactService(IUnitOfWork unitOfWork)
         {
