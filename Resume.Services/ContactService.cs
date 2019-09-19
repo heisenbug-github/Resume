@@ -1,6 +1,7 @@
 ﻿using Resume.Entities;
 using Resume.Repositories;
 using Resume.Repositories.UnitOfWork;
+using Resume.Validation;
 using System;
 using System.Collections.Generic;
 
@@ -31,8 +32,14 @@ namespace Resume.Services
 
         public void SaveMessage(Message message)
         {
-            this.messageRepository.Add(message);
-            this.unitOfWork.SaveChanges();
+            var messageValidator = new MessageValidator();
+            var validationResult = messageValidator.Validate(message);
+            if (validationResult.IsValid)
+            {
+                message.MessageDate = DateTime.Now;
+                this.messageRepository.Add(message);
+                this.unitOfWork.SaveChanges();
+            }
         }
     }
 }

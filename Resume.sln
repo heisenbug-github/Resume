@@ -3,17 +3,29 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29306.81
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resume.Entities", "Resume.Entities\Resume.Entities.csproj", "{49B984BB-51B9-497F-AD03-5AFB188C1764}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Resume.Entities", "Resume.Entities\Resume.Entities.csproj", "{49B984BB-51B9-497F-AD03-5AFB188C1764}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resume.Repositories", "Resume.Repositories\Resume.Repositories.csproj", "{6B6B99FD-B4BC-4E22-AF41-1B058AD95673}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Resume.Repositories", "Resume.Repositories\Resume.Repositories.csproj", "{6B6B99FD-B4BC-4E22-AF41-1B058AD95673}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resume.DbContext", "Resume.DbContext\Resume.DbContext.csproj", "{6C120D55-4A59-4520-B7D1-150BD956D596}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Resume.DbContext", "Resume.DbContext\Resume.DbContext.csproj", "{6C120D55-4A59-4520-B7D1-150BD956D596}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resume.Services", "Resume.Services\Resume.Services.csproj", "{159B577C-9100-4421-81FA-1C0D8A8AF383}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Resume.Services", "Resume.Services\Resume.Services.csproj", "{159B577C-9100-4421-81FA-1C0D8A8AF383}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resume.WebUi", "Resume.WebUi\Resume.WebUi.csproj", "{FAA2DD35-FDD7-49EC-B8C0-11827F58B3C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Resume.WebUi", "Resume.WebUi\Resume.WebUi.csproj", "{FAA2DD35-FDD7-49EC-B8C0-11827F58B3C8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resume.Utils", "Resume.Utils\Resume.Utils.csproj", "{B4C3FE80-8ECA-49B2-9787-ABB85CC5EA7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Resume.Utils", "Resume.Utils\Resume.Utils.csproj", "{B4C3FE80-8ECA-49B2-9787-ABB85CC5EA7F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{27D953C2-E606-46A3-BAE0-A02E7690D057}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccessLayer", "DataAccessLayer", "{4A267050-B835-47CD-A5CC-9C4DB5709324}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BusinessLogicLayer", "BusinessLogicLayer", "{B5EDDBD6-75AE-434A-81DC-B34610543C1E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{F26D69D6-F09D-4509-B23D-0E062329972F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{01852EB6-2A78-469A-BD8B-CA6635BD9AFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resume.Validation", "Resume.Validation\Resume.Validation.csproj", "{2462EC63-1096-4809-AB36-D69C0E354F2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,9 +57,22 @@ Global
 		{B4C3FE80-8ECA-49B2-9787-ABB85CC5EA7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4C3FE80-8ECA-49B2-9787-ABB85CC5EA7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4C3FE80-8ECA-49B2-9787-ABB85CC5EA7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2462EC63-1096-4809-AB36-D69C0E354F2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2462EC63-1096-4809-AB36-D69C0E354F2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2462EC63-1096-4809-AB36-D69C0E354F2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2462EC63-1096-4809-AB36-D69C0E354F2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{49B984BB-51B9-497F-AD03-5AFB188C1764} = {27D953C2-E606-46A3-BAE0-A02E7690D057}
+		{6B6B99FD-B4BC-4E22-AF41-1B058AD95673} = {4A267050-B835-47CD-A5CC-9C4DB5709324}
+		{6C120D55-4A59-4520-B7D1-150BD956D596} = {4A267050-B835-47CD-A5CC-9C4DB5709324}
+		{159B577C-9100-4421-81FA-1C0D8A8AF383} = {B5EDDBD6-75AE-434A-81DC-B34610543C1E}
+		{FAA2DD35-FDD7-49EC-B8C0-11827F58B3C8} = {01852EB6-2A78-469A-BD8B-CA6635BD9AFE}
+		{B4C3FE80-8ECA-49B2-9787-ABB85CC5EA7F} = {F26D69D6-F09D-4509-B23D-0E062329972F}
+		{2462EC63-1096-4809-AB36-D69C0E354F2F} = {B5EDDBD6-75AE-434A-81DC-B34610543C1E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {904B5C1C-FF0A-4F29-BF29-340C9798895E}
