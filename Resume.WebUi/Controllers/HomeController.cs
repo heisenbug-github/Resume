@@ -35,7 +35,8 @@ namespace Resume.WebUi.Controllers
         }
 
         [HttpPost]
-        public IActionResult SendMessage(Message message)
+        [ValidateAntiForgeryToken]
+        public IActionResult SendMessage([Bind("Body,SenderName,SenderEmail,Subject")]Message message)
         {
             this.contactService.SaveMessage(message);
                 
