@@ -40,7 +40,7 @@ namespace Resume.WebUi.Controllers
         {
             this.contactService.SaveMessage(message);
                 
-            return View("Index");
+            return RedirectToAction("Index");
         }
     }
 }
