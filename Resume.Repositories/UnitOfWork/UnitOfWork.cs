@@ -13,10 +13,9 @@ namespace Resume.Repositories.UnitOfWork
         private readonly ResumeDbContext resumeDbContext;
         private readonly ResumeDbContext loggingDbContext;
 
-        public UnitOfWork(ResumeDbContext resumeDbContext, ResumeDbContext loggingDbContext)
+        public UnitOfWork(ResumeDbContext resumeDbContext)
         {
             this.resumeDbContext = resumeDbContext ?? throw new ArgumentNullException("dbContext can not be null.");
-            this.loggingDbContext = loggingDbContext ?? throw new ArgumentNullException("loggingDbContext can not be null.");
 
             // Buradan istediğiniz gibi EntityFramework'ü konfigure edebilirsiniz.
             //this.appDbContext.Configuration.LazyLoadingEnabled = false;
@@ -42,8 +41,8 @@ namespace Resume.Repositories.UnitOfWork
             {
                 try
                 {
-                    int retVal = this.resumeDbContext.SaveChanges();
                     this.CreateLogData();// if an error occures in log creation, then no data is saved.
+                    int retVal = this.resumeDbContext.SaveChanges();
                     transaction.Commit();
                     return retVal;
                 }
@@ -117,9 +116,9 @@ namespace Resume.Repositories.UnitOfWork
                 ChangeType = entityChangeType,
                 EntityName = entityName,
                 RecordId = recordId,
-                UserId = Guid.Empty
+                UserId = null
             };
-            this.loggingDbContext.Logs.Add(log);
+            this.resumeDbContext.Logs.Add(log);
 
             return log.Id;
         }
@@ -128,25 +127,28 @@ namespace Resume.Repositories.UnitOfWork
         {
             foreach (var propertyEntry in entry.Properties)
             {
-                var propertyName = propertyEntry.Metadata.Name;
-                var originalValue = propertyEntry.OriginalValue;
-                var currentValue = propertyEntry.CurrentValue;
+                if (propertyEntry.Metadata.Name == "ClusteredIndex") continue;
+
                 LogDetail logDetail = new LogDetail
                 {
                     LogId = logId,
-                    NewValue = currentValue.ToString(),
-                    OriginalValue = originalValue.ToString(),
-                    PropertyName = propertyName
+                    NewValue = propertyEntry.CurrentValue.ToString(),
+                    OriginalValue = propertyEntry.OriginalValue.ToString(),
+                    PropertyName = propertyEntry.Metadata.Name
                 };
-                this.loggingDbContext.LogDetails.Add(logDetail);
+                this.resumeDbContext.LogDetails.Add(logDetail);
             }
         }
 
         private void CreateLogData()
         {
             IEnumerable<EntityEntry> entries = this.resumeDbContext.ChangeTracker.Entries();
-            foreach (var entry in entries)
+            IList<EntityEntry> entityEntries = new List<EntityEntry>(entries);
+            foreach (var entry in entityEntries)
             {
+                var entityName= entry.Entity.GetType().Name;
+                if (entityName == "Log" || entityName == "LogDetail") continue;
+
                 var entityChangeType = this.DetectEntityChangeType(entry);
                 var logId = this.AddLog(entry, entityChangeType);
                 this.AddLogDetail(entry, logId);

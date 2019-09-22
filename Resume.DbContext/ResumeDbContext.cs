@@ -17,6 +17,7 @@ namespace Resume.DbContext
         public DbSet<Message> Messages { get; set; }
         public DbSet<Log> Logs { get; set; }
         public DbSet<LogDetail> LogDetails { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -36,8 +37,8 @@ namespace Resume.DbContext
                 foreach (var key in entityType.GetKeys())
                     key.Relational().Name = key.Relational().Name.ToSnakeCase();
 
-                foreach (var key in entityType.GetForeignKeys())
-                    key.Relational().Name = key.Relational().Name.ToSnakeCase();
+                foreach (var foreignKey in entityType.GetForeignKeys())
+                    foreignKey.Relational().Name = foreignKey.Relational().Name.ToSnakeCase();
 
                 foreach (var index in entityType.GetIndexes())
                     index.Relational().Name = index.Relational().Name.ToSnakeCase();
@@ -45,6 +46,8 @@ namespace Resume.DbContext
 
             builder.ApplyConfiguration(new MessageConfigurations());
             builder.ApplyConfiguration(new LogConfigurations());
+            builder.ApplyConfiguration(new LogDetailConfigurations());
+            builder.ApplyConfiguration(new UserConfigurations());
         }
     }
 }

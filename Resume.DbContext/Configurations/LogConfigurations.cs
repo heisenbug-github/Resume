@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Resume.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,9 @@ namespace Resume.DbContext.Configurations
             base.Configure(builder); // Must call this
 
             // other configurations here
+            builder.Property(x => x.EntityName).IsRequired();
+            builder.Property(x => x.ChangeType).HasConversion(new EnumToStringConverter<EntityChangeType>());
+
             builder.HasMany(x=>x.LogDetails)
                 .WithOne(x=>x.Log)
                 .HasForeignKey(x=>x.LogId)
