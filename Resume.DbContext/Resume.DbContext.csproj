@@ -15,6 +15,8 @@
     <Compile Remove="Migrations\20190922083338_LogAndUser.Designer.cs" />
     <Compile Remove="Migrations\20190922084214_LogAndUser.cs" />
     <Compile Remove="Migrations\20190922084214_LogAndUser.Designer.cs" />
+    <Compile Remove="Migrations\20190922161853_AddedVisitId.cs" />
+    <Compile Remove="Migrations\20190922161853_AddedVisitId.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Resume.DbContext;
 using Resume.Entities;
+using Resume.Utils;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,11 +12,12 @@ namespace Resume.Repositories.UnitOfWork
     public class UnitOfWork : IUnitOfWork
     {
         private readonly ResumeDbContext resumeDbContext;
-        private readonly ResumeDbContext loggingDbContext;
+        private readonly Guid visitId;
 
-        public UnitOfWork(ResumeDbContext resumeDbContext)
+        public UnitOfWork(ResumeDbContext resumeDbContext, VisitIdProvider visitIdProvider)
         {
             this.resumeDbContext = resumeDbContext ?? throw new ArgumentNullException("dbContext can not be null.");
+            this.visitId = visitIdProvider.VisitId;
 
             // Buradan istediğiniz gibi EntityFramework'ü konfigure edebilirsiniz.
             //this.appDbContext.Configuration.LazyLoadingEnabled = false;
@@ -116,7 +118,8 @@ namespace Resume.Repositories.UnitOfWork
                 ChangeType = entityChangeType,
                 EntityName = entityName,
                 RecordId = recordId,
-                UserId = null
+                UserId = null,
+                VisitId = this.visitId
             };
             this.resumeDbContext.Logs.Add(log);
 

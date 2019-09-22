@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Resume.Entities;
 using System;
@@ -16,6 +17,7 @@ namespace Resume.DbContext.Configurations
             // other configurations here
             builder.Property(x => x.EntityName).IsRequired();
             builder.Property(x => x.ChangeType).HasConversion(new EnumToStringConverter<EntityChangeType>());
+            builder.ForNpgsqlHasIndex(x => x.VisitId);
 
             builder.HasMany(x=>x.LogDetails)
                 .WithOne(x=>x.Log)

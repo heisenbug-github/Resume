@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Resume.DbContext;
 using Resume.Repositories.UnitOfWork;
 using Resume.Services;
+using Resume.Utils;
 
 namespace Resume.WebUi
 {
@@ -37,7 +38,7 @@ namespace Resume.WebUi
 
             services.AddDbContext<ResumeDbContext>(options =>
                  options.UseNpgsql(Configuration.GetConnectionString("ConnectionString")));
-
+            services.AddSingleton<VisitIdProvider>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IContactService, ContactService>();
 

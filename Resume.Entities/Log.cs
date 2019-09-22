@@ -12,6 +12,7 @@ namespace Resume.Entities
         public DateTime ChangeDate { get; set; }
         public string EntityName { get; set; }
         public IList<LogDetail> LogDetails { get; set; }
+        public Guid VisitId { get; set; }
 
         public Log()
         {
