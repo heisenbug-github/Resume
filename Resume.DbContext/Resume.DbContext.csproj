@@ -9,6 +9,8 @@
     <Compile Remove="Migrations\20190914200744_InitialMigration.Designer.cs" />
     <Compile Remove="Migrations\20190914202929_InitialMigration.cs" />
     <Compile Remove="Migrations\20190914202929_InitialMigration.Designer.cs" />
+    <Compile Remove="Migrations\20190921191928_ClusteredIndexEditing.cs" />
+    <Compile Remove="Migrations\20190921191928_ClusteredIndexEditing.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

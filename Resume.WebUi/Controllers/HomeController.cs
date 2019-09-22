@@ -38,6 +38,11 @@ namespace Resume.WebUi.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult SendMessage([Bind("Body,SenderName,SenderEmail,Subject")]Message message)
         {
+            //Message message2 = this.contactService.GetById(Guid.Parse("7f0a9a23-e4ab-45c5-a647-d6e1c19c0f6a"));
+            //message2.Subject = "Change tracker tests";
+            //message.Id = Guid.Parse("7f0a9a23-e4ab-45c5-a647-d6e1c19c0f6a");
+            //message.Subject = "Attach test";
+            //this.contactService.UpdateMessage(message);
             this.contactService.SaveMessage(message);
                 
             return RedirectToAction("Index");

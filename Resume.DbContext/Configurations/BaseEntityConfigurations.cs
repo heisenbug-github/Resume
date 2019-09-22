@@ -14,6 +14,11 @@ namespace Resume.DbContext.Configurations
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.Property(x => x.ClusteredIndex).UseNpgsqlIdentityAlwaysColumn();
             builder.ForNpgsqlHasIndex(x => x.ClusteredIndex).IsUnique();
+
+            //builder.HasMany(x => x.RecordLogs)
+            //    .WithOne()
+            //    .HasForeignKey(x => x.RecordId)
+            //    .OnDelete(DeleteBehavior.Cascade); // bu relation drop edilen kaydın logları silinmemesi için commentlendi. 
         }
     }
 }

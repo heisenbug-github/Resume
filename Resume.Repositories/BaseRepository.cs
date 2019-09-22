@@ -97,7 +97,7 @@ namespace Resume.Repositories
                 this.dbSet.Attach(entity);
             }
             //this.dbSet.Attach(entity);
-            this.dbContext.Entry(entity).State = EntityState.Modified;
+            //this.dbContext.Entry(entity).State = EntityState.Modified;
         }
 
         public void Delete(TEntity entity)

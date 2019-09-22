@@ -41,5 +41,16 @@ namespace Resume.Services
                 this.unitOfWork.SaveChanges();
             }
         }
+
+        public Message GetById(Guid id)
+        {
+            return this.messageRepository.GetById(id);
+        }
+
+        public void UpdateMessage(Message message)
+        {
+            this.messageRepository.Update(message);
+            this.unitOfWork.SaveChanges();
+        }
     }
 }

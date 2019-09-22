@@ -9,6 +9,5 @@ namespace Resume.Entities
         public Guid Id { get; set; }
         public bool IsDeleted { get; set; }
         public long ClusteredIndex { get; set; }
-
     }
 }

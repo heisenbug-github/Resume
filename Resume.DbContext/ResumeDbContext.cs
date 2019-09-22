@@ -15,6 +15,8 @@ namespace Resume.DbContext
         }
 
         public DbSet<Message> Messages { get; set; }
+        public DbSet<Log> Logs { get; set; }
+        public DbSet<LogDetail> LogDetails { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -42,6 +44,7 @@ namespace Resume.DbContext
             }
 
             builder.ApplyConfiguration(new MessageConfigurations());
+            builder.ApplyConfiguration(new LogConfigurations());
         }
     }
 }
