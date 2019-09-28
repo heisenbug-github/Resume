@@ -741,7 +741,11 @@
         $(document).ready(function () {
             var errorMessage = '@ViewBag.ErrorMessage';
             if (errorMessage != "") {
-                alert(errorMessage);
+                Swal.fire({
+                    type: 'error',
+                    title: 'Hata...',
+                    text: errorMessage
+                });
             }
         });
     </script>
