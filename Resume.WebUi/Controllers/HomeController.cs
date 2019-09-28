@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Resume.Entities;
 using Resume.Services;
@@ -43,9 +44,18 @@ namespace Resume.WebUi.Controllers
             //message.Id = Guid.Parse("7f0a9a23-e4ab-45c5-a647-d6e1c19c0f6a");
             //message.Subject = "Attach test";
             //this.contactService.UpdateMessage(message);
-            this.contactService.SaveMessage(message);
-                
-            return RedirectToAction("Index");
+            ValidationResult validationResult = this.contactService.SendMessage(message);
+            string errorMessage = "";
+            if(validationResult.IsValid==false)
+            {
+                foreach (var validationFailure in validationResult.Errors)
+                {
+                    errorMessage += validationFailure.ErrorMessage + "\n";
+                }
+            }
+            ViewBag.ErrorMessage = errorMessage;
+
+            return View("Index"); // RedirectToAction("Index");
         }
     }
 }

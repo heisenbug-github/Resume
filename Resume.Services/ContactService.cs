@@ -1,4 +1,5 @@
-﻿using Resume.Entities;
+﻿using FluentValidation.Results;
+using Resume.Entities;
 using Resume.Repositories;
 using Resume.Repositories.UnitOfWork;
 using Resume.Validation;
@@ -30,7 +31,7 @@ namespace Resume.Services
             this.unitOfWork.SaveChanges();
         }
 
-        public void SaveMessage(Message message)
+        public ValidationResult SendMessage(Message message)
         {
             var messageValidator = new MessageValidator();
             var validationResult = messageValidator.Validate(message);
@@ -40,6 +41,8 @@ namespace Resume.Services
                 this.messageRepository.Add(message);
                 this.unitOfWork.SaveChanges();
             }
+
+            return validationResult;
         }
 
         public Message GetById(Guid id)
