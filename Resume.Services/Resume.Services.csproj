@@ -8,7 +8,6 @@
     <ProjectReference Include="..\Resume.Entities\Resume.Entities.csproj" />
     <ProjectReference Include="..\Resume.Repositories\Resume.Repositories.csproj" />
     <ProjectReference Include="..\Resume.Utils\Resume.Utils.csproj" />
-    <ProjectReference Include="..\Resume.Validation\Resume.Validation.csproj" />
   </ItemGroup>
 
 </Project>

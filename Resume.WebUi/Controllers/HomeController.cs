@@ -7,6 +7,7 @@ using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc;
 using Resume.Entities;
 using Resume.Services;
+using Resume.Validation;
 using Resume.WebUi.Models;
 
 namespace Resume.WebUi.Controllers
@@ -44,18 +45,24 @@ namespace Resume.WebUi.Controllers
             //message.Id = Guid.Parse("7f0a9a23-e4ab-45c5-a647-d6e1c19c0f6a");
             //message.Subject = "Attach test";
             //this.contactService.UpdateMessage(message);
-            ValidationResult validationResult = this.contactService.SendMessage(message);
+
             string errorMessage = "";
-            if(validationResult.IsValid==false)
+            var messageValidator = new MessageValidator();
+            var validationResult = messageValidator.Validate(message);
+            if (validationResult.IsValid)
+            {
+                this.contactService.SendMessage(message);
+            }
+            else
             {
                 foreach (var validationFailure in validationResult.Errors)
                 {
                     errorMessage += validationFailure.ErrorMessage + "\n";
                 }
+                ViewBag.ErrorMessage = errorMessage;
             }
-            ViewBag.ErrorMessage = errorMessage;
-
-            return View("Index"); // RedirectToAction("Index");
+            
+            return View("Index");
         }
     }
 }

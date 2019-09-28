@@ -1,8 +1,6 @@
-﻿using FluentValidation.Results;
-using Resume.Entities;
+﻿using Resume.Entities;
 using Resume.Repositories;
 using Resume.Repositories.UnitOfWork;
-using Resume.Validation;
 using System;
 using System.Collections.Generic;
 
@@ -31,18 +29,11 @@ namespace Resume.Services
             this.unitOfWork.SaveChanges();
         }
 
-        public ValidationResult SendMessage(Message message)
+        public void SendMessage(Message message)
         {
-            var messageValidator = new MessageValidator();
-            var validationResult = messageValidator.Validate(message);
-            if (validationResult.IsValid)
-            {
-                message.MessageDate = DateTime.Now;
-                this.messageRepository.Add(message);
-                this.unitOfWork.SaveChanges();
-            }
-
-            return validationResult;
+            message.MessageDate = DateTime.Now;
+            this.messageRepository.Add(message);
+            this.unitOfWork.SaveChanges();
         }
 
         public Message GetById(Guid id)

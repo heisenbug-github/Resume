@@ -18,6 +18,7 @@
     <ProjectReference Include="..\Resume.Entities\Resume.Entities.csproj" />
     <ProjectReference Include="..\Resume.Services\Resume.Services.csproj" />
     <ProjectReference Include="..\Resume.Utils\Resume.Utils.csproj" />
+    <ProjectReference Include="..\Resume.Validation\Resume.Validation.csproj" />
   </ItemGroup>
 
 </Project>
