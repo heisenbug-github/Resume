@@ -29,20 +29,44 @@ namespace Resume.Repositories
             return this.dbSet.Find(id);
         }
 
-        public TEntity Get(Expression<Func<TEntity, bool>> where)
+        public TEntity Get(Expression<Func<TEntity, bool>> where, string includeProperties = "")
         {
-            return this.dbSet.Where(e => e.IsDeleted == false).Where(where).SingleOrDefault();
+            IQueryable<TEntity> query = this.dbSet;
+
+            query = query.Where(e => e.IsDeleted == false).Where(where);
+
+            foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+
+            return query.SingleOrDefault();
         }
 
-        public TEntity GetDeleted(Expression<Func<TEntity, bool>> where)
+        public TEntity GetDeleted(Expression<Func<TEntity, bool>> where, string includeProperties = "")
         {
-            return this.dbSet.Where(e => e.IsDeleted == true).Where(where).SingleOrDefault();
+            IQueryable<TEntity> query = this.dbSet;
+
+            query = query.Where(e => e.IsDeleted == true).Where(where);
+
+            foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+
+            return query.SingleOrDefault();
         }
 
-        public IList<TEntity> GetAll(Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
+        public IList<TEntity> GetAll(Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "")
         {
             IQueryable<TEntity> query = this.dbSet;
             query = query.Where(e => e.IsDeleted == false);
+
+            foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+
             if (orderBy != null)
             {
                 return orderBy(query).ToList();
@@ -50,10 +74,16 @@ namespace Resume.Repositories
             return query.ToList();
         }
 
-        public IList<TEntity> GetAllDeleted(Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
+        public IList<TEntity> GetAllDeleted(Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "")
         {
             IQueryable<TEntity> query = this.dbSet;
             query = query.Where(e => e.IsDeleted == true);
+
+            foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+
             if (orderBy != null)
             {
                 return orderBy(query).ToList();
@@ -61,10 +91,16 @@ namespace Resume.Repositories
             return query.ToList();
         }
 
-        public IList<TEntity> GetMany(Expression<Func<TEntity, bool>> where, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
+        public IList<TEntity> GetMany(Expression<Func<TEntity, bool>> where, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "")
         {
             IQueryable<TEntity> query = this.dbSet;
             query = query.Where(e => e.IsDeleted == false).Where(where);
+
+            foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+
             if (orderBy != null)
             {
                 return orderBy(query).ToList();
@@ -72,10 +108,16 @@ namespace Resume.Repositories
             return query.ToList();
         }
 
-        public IList<TEntity> GetManyDeleted(Expression<Func<TEntity, bool>> where, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
+        public IList<TEntity> GetManyDeleted(Expression<Func<TEntity, bool>> where, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "")
         {
             IQueryable<TEntity> query = this.dbSet;
             query = query.Where(e => e.IsDeleted == true).Where(where);
+
+            foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+
             if (orderBy != null)
             {
                 return orderBy(query).ToList();
@@ -288,10 +330,16 @@ namespace Resume.Repositories
             return pagedList;
         }
 
-        public async Task<PagedList<TEntity>> GetAllAsync(int pageIndex, int pageSize, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
+        public async Task<PagedList<TEntity>> GetAllAsync(int pageIndex, int pageSize, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "")
         {
             IQueryable<TEntity> query = this.dbSet;
             query = query.Where(e => e.IsDeleted == false);
+
+            foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+
             if (orderBy != null)
             {
                 query = orderBy(query);
@@ -300,10 +348,16 @@ namespace Resume.Repositories
             return pagedList;
         }
 
-        public async Task<IList<TEntity>> GetManyAsync(Expression<Func<TEntity, bool>> where, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
+        public async Task<IList<TEntity>> GetManyAsync(Expression<Func<TEntity, bool>> where, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "")
         {
             IQueryable<TEntity> query = this.dbSet;
             query = query.Where(e => e.IsDeleted == false).Where(where);
+
+            foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+
             if (orderBy != null)
             {
                 return await orderBy(query).ToListAsync();
@@ -311,10 +365,16 @@ namespace Resume.Repositories
             return await query.ToListAsync();
         }
 
-        public async Task<PagedList<TEntity>> GetManyAsync(Expression<Func<TEntity, bool>> where, int pageIndex, int pageSize, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
+        public async Task<PagedList<TEntity>> GetManyAsync(Expression<Func<TEntity, bool>> where, int pageIndex, int pageSize, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "")
         {
             IQueryable<TEntity> query = this.dbSet;
             query = query.Where(e => e.IsDeleted == false).Where<TEntity>(where);
+
+            foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+
             if (orderBy != null)
             {
                 query = orderBy(query);
@@ -322,10 +382,16 @@ namespace Resume.Repositories
             return await this.GetPagedListAsync(query, pageIndex, pageSize);
         }
 
-        public async Task<IList<TEntity>> GetManyDeletedAsync(Expression<Func<TEntity, bool>> where, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
+        public async Task<IList<TEntity>> GetManyDeletedAsync(Expression<Func<TEntity, bool>> where, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "")
         {
             IQueryable<TEntity> query = this.dbSet;
             query = query.Where(e => e.IsDeleted == true).Where<TEntity>(where);
+
+            foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+
             if (orderBy != null)
             {
                 query = orderBy(query);
@@ -333,10 +399,16 @@ namespace Resume.Repositories
             return await query.ToListAsync();
         }
 
-        public async Task<PagedList<TEntity>> GetManyDeletedAsync(Expression<Func<TEntity, bool>> where, int pageIndex, int pageSize, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
+        public async Task<PagedList<TEntity>> GetManyDeletedAsync(Expression<Func<TEntity, bool>> where, int pageIndex, int pageSize, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "")
         {
             IQueryable<TEntity> query = this.dbSet;
             query = query.Where(e => e.IsDeleted == true).Where<TEntity>(where);
+
+            foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+
             if (orderBy != null)
             {
                 query = orderBy(query);
@@ -344,10 +416,16 @@ namespace Resume.Repositories
             return await this.GetPagedListAsync(query, pageIndex, pageSize);
         }
 
-        public async Task<IList<TEntity>> GetAllAsync(Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
+        public async Task<IList<TEntity>> GetAllAsync(Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "")
         {
             IQueryable<TEntity> query = this.dbSet;
             query = query.Where(e => e.IsDeleted == false);
+
+            foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+
             if (orderBy != null)
             {
                 query = orderBy(query);
@@ -355,10 +433,16 @@ namespace Resume.Repositories
             return await query.ToListAsync();
         }
 
-        public async Task<IList<TEntity>> GetAllDeletedAsync(Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
+        public async Task<IList<TEntity>> GetAllDeletedAsync(Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "")
         {
             IQueryable<TEntity> query = this.dbSet;
             query = query.Where(e => e.IsDeleted == true);
+
+            foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+
             if (orderBy != null)
             {
                 query = orderBy(query);
@@ -366,10 +450,16 @@ namespace Resume.Repositories
             return await query.ToListAsync();
         }
 
-        public async Task<PagedList<TEntity>> GetAllDeletedAsync(int pageIndex, int pageSize, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null)
+        public async Task<PagedList<TEntity>> GetAllDeletedAsync(int pageIndex, int pageSize, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "")
         {
             IQueryable<TEntity> query = this.dbSet;
             query = query.Where(e => e.IsDeleted == true);
+
+            foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+
             if (orderBy != null)
             {
                 query = orderBy(query);
