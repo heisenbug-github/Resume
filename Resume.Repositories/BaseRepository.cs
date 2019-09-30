@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Resume.DbContext;
 using Resume.Entities;
+using Resume.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;

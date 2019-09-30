@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Resume.Entities
+namespace Resume.Utils
 {
     public class PagedList<TEntity> : List<TEntity>
     {
